@@ -1,27 +1,83 @@
-.dashboard-container {
-  max-width: 600px;
-  margin: 50px auto;
+/* General page styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  min-height: 100vh;
+  background-color: #343a40;
+  color: white;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar h4 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.dashboard-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.dashboard-buttons button {
-  padding: 12px;
-  background-color: #007bfc;
-  color: white;
+.sidebar .list-group-item {
+  background-color: transparent;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  color: white;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
-.dashboard-buttons button:hover {
-  background-color: #005bb5;
+.sidebar .list-group-item:hover {
+  background-color: #495057;
+  color: #f8f9fa;
+}
+
+/* Main content */
+.main-content {
+  padding: 2rem;
+}
+
+.dashboard-title {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Dashboard cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Forms */
+form input {
+  border-radius: 8px;
+}
+
+form button {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+/* Transactions list */
+.transaction-list {
+  list-style: none;
+  padding: 0;
+}
+
+.transaction-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+  color: #212529;
 }

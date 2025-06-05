@@ -1,84 +1,28 @@
 .user-form-container {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 25px 30px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 40px auto;
 }
 
-.user-form-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+input::placeholder {
+  font-style: italic;
+}
+.user-form-container input,
+.user-form-container select,
+.user-form-container .form-check-input {
+  height: 50px;
+  font-size: 1.1rem;
 }
 
-.form-group {
-  margin-bottom: 18px;
+.user-form-container label {
+  font-weight: 500;
+  font-size: 1.05rem;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #444;
+.user-form-container .btn {
+  font-size: 1.2rem;
+  padding: 12px 24px;
 }
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-  border-color: #007bfc;
-  outline: none;
-}
-
-.form-group input.input-error,
-.form-group select.input-error {
-  border-color: red;
-}
-
-.error-message {
-  color: red;
-  font-size: 13px;
-  margin-top: 4px;
-}
-
-.radio-group {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-top: 5px;
-}
-
-.radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #0400fc;
-  color: #fff;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #005bb5;
+.bank-logo {
+  height: 80px;
+  object-fit: contain;
 }
