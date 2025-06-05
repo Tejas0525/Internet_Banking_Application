@@ -1,0 +1,22 @@
+/* navbar.css */
+.custom-link {
+  color: white !important;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.custom-link:hover {
+  color: #002366 !important; /* Dark blue on hover */
+  text-decoration:none;
+}
+.custom-navbar {
+  background-color: #7d4ba1 !important; /* Indigo */
+}
+/* Navbar background gradient: light purple to blue */
+.custom-navbar{
+  background: linear-gradient(90deg, hsl(250, 72%, 48%) 0%, #076dcc 100%);
+ color: #f0e6ff; /* very light purple/white */
+  font-weight: 600;
+  transition: color 0.3s ease;
+
+}
