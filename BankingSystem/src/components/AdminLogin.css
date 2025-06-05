@@ -1,29 +1,82 @@
 /* AdminLogin.css */
+
 .admin-login-container {
   max-width: 400px;
   margin: 50px auto;
-  padding: 30px;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 30px 25px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.admin-login-container input {
+.admin-login-container h2 {
+  font-weight: 600;
+  color: #212529;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.admin-login-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.admin-login-form label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.admin-login-form select,
+.admin-login-form input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
-.admin-login-container button {
+.admin-login-form select:focus,
+.admin-login-form input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 3px #0d6efd;
+}
+
+.admin-login-form button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #0d6efd; /* Bootstrap primary */
   color: white;
+  font-weight: 600;
+  font-size: 1rem;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.admin-login-container button:hover {
-  background-color: #0056b3;
+.admin-login-form button[type="submit"]:hover {
+  background-color: #0b5ed7;
+}
+
+.error {
+  color: #dc3545; /* Bootstrap danger red */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.links-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.links-container a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.links-container a:hover {
+  text-decoration: underline;
 }
