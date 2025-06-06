@@ -1,0 +1,68 @@
+/* Full page background color and font */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e5eaf0;
+}
+
+/* Header styles */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #002244;
+  color: white;
+  padding: 20px 40px;
+  border-bottom: 2px solid #001122;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-header img {
+  height: 40px;
+  margin-right: 15px;
+}
+
+.dashboard-header button {
+  background-color: #ff4d4d;
+  border: none;
+  padding: 7px 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dashboard-header button:hover {
+  background-color: #e60000;
+}
+
+/* Container for dashboard content */
+.manager-dashboard-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px); /* full height minus header */
+  background-color: #e5eaf0;
+}
+
+/* Card style for tabs container */
+.manager-dashboard-card {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+  width: 90%;
+  max-width: 1100px;
+}

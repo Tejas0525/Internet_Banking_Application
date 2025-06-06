@@ -7,7 +7,7 @@ import UserForm from './components/UserForm';
 import TransactionPage from './components/TransactionPage';
 import AdminDashboard from './components/AdminDashboard';
 import ManageManager from './components/ManageManager';
-
+import ManagerDashboard from './components/ManagerDashboard';
 
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<AdminLogin />} />
          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/manager-dashboard" element={<ManagerDashboard/>} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-         <Route path="/register" element={<UserForm />} />
+        <Route path="/register" element={<UserForm />} />
         <Route path="/add-bank" element={<AddBankForm />} />
         <Route path="/create-user" element={<UserForm />} />
         <Route path="/transaction-page" element={<TransactionPage />} />
