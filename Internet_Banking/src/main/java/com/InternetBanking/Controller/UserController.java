@@ -26,8 +26,12 @@ public class UserController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+		User user = userService.getUserByID(id);
+		if (user == null) {
+	        return ResponseEntity.notFound().build(); // 404 Not Found
+	    }
 
-		return ResponseEntity.ok(userService.getUserByID(id));
+		return ResponseEntity.ok(user);
 	}
 	
 	@PostMapping("/save")
@@ -52,7 +56,7 @@ public class UserController {
 	    existingUser.setMobileNmuber(userDetails.getMobileNmuber());
 	    existingUser.setPassword(userDetails.getPassword());
 	    existingUser.setRole(userDetails.getRole());
-	    existingUser.setBranchId(userDetails.getBranchId());
+	    existingUser.setBranch(userDetails.getBranch());
 	    existingUser.setAccountNumber(userDetails.getAccountNumber());
 
 	    return ResponseEntity.ok(userService.saveUser(existingUser));
