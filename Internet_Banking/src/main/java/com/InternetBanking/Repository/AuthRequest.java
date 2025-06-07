@@ -1,5 +1,7 @@
 package com.InternetBanking.Repository;
 
-public class AuthRequest {
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
+
+public class AuthRequest extends JpaRepositoriesAutoConfiguration {
 
 }
