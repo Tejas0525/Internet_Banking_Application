@@ -1,28 +1,56 @@
-.user-form-container {
+/* UserForm.css */
+
+.userform-wrapper {
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.header-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-container h2 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.user-form {
+  width: 100%;
   max-width: 1000px;
-  margin: 40px auto;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-input::placeholder {
-  font-style: italic;
+input.form-control,
+select.form-select {
+  border-radius: 6px;
 }
-.user-form-container input,
-.user-form-container select,
-.user-form-container .form-check-input {
-  height: 50px;
-  font-size: 1.1rem;
+form {
+  border: 2px solid #007bff;  /* Blue border */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: auto;
+  background-color: #f9f9f9;
 }
-
-.user-form-container label {
-  font-weight: 500;
-  font-size: 1.05rem;
-}
-
-.user-form-container .btn {
-  font-size: 1.2rem;
-  padding: 12px 24px;
-}
-.bank-logo {
-  height: 80px;
-  object-fit: contain;
+.form-container {
+  border: 2px solid #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }

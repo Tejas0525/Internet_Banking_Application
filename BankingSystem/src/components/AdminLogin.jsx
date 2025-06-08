@@ -6,7 +6,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
 const schema = yup.object().shape({
   role: yup.string().required('Role is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -36,6 +35,7 @@ function AdminLogin() {
         const result = await res.json();
 
         if (result.exists && password === 'password123') {
+          
           alert('User Login successful!');
           navigate('/transaction');
         } else {
