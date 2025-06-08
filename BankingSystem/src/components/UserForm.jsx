@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './UserForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 const UserForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -52,7 +50,11 @@ const UserForm = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'radio' ? value : value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -63,89 +65,106 @@ const UserForm = () => {
     }
   };
 
-  const bankBranches = ['', 'SBI', 'ICICI', 'HDFC', 'Axis Bank', 'PNB'];
+  const bankBranches = ['SBI', 'ICICI', 'HDFC', 'Axis Bank', 'PNB'];
 
   return (
-    
-    <div className="container mt-4 user-form-container">
-      <div className="text-center mb-4">
-  <img src="/images/logo.png" alt="Bank Logo" className="bank-logo" />
-</div>
-      <h2 className="text-center text-primary mb-3">Welcome Dear Customer</h2>
-      <h4 className="text-center mb-4">Create Account</h4>
-    <form onSubmit={handleSubmit} className="border p-4 shadow rounded bg-light">
-  <div className="row">
-    {[
-      { label: 'Full Name', name: 'name', type: 'text' },
-      { label: 'Address', name: 'address', type: 'text' },
-      { label: 'Date of Birth', name: 'dob', type: 'date' },
-      { label: 'Aadhaar Number', name: 'aadhaar', type: 'text' },
-      { label: 'PAN Number', name: 'pan', type: 'text' },
-      { label: 'Email', name: 'email', type: 'email' },
-      { label: 'Password', name: 'password', type: 'password' },
-      { label: 'Phone Number', name: 'phone', type: 'text', placeholder: 'Phone number registered with Aadhaar' },
-      { label: 'IFSC Code', name: 'ifscCode', type: 'text' },
-    ].map((field, index) => (
-      <div key={field.name} className="col-md-6 mb-3">
-        <label className="form-label">{field.label}</label>
-        <input
-          type={field.type}
-          name={field.name}
-          placeholder={field.placeholder || ''}
-          className={`form-control ${errors[field.name] ? 'is-invalid' : ''}`}
-          value={formData[field.name]}
-          onChange={handleChange}
-        />
-        {errors[field.name] && <div className="invalid-feedback">{errors[field.name]}</div>}
+    <div className="userform-wrapper">
+      <div className="header-container">
+        <h2 className="gradient-text">Welcome Dear Customer</h2>
+        <p className="text-secondary">Create Your Account Here..</p>
       </div>
-    ))}
 
-    {/* Gender Full Width */}
-    <div className="col-12 mb-3">
-      <label className="form-label">Gender</label>
-      <div>
-        {['Male', 'Female', 'Other'].map((option) => (
-          <div className="form-check form-check-inline" key={option}>
-            <input
-              type="radio"
-              className="form-check-input"
-              name="gender"
-              value={option}
-              checked={formData.gender === option}
-              onChange={handleChange}
-            />
-            <label className="form-check-label">{option}</label>
-          </div>
-        ))}
-      </div>
-      {errors.gender && <div className="text-danger">{errors.gender}</div>}
+      <form onSubmit={handleSubmit} className="user-form">
+        <div className="row">
+          {[
+            { label: 'Full Name', name: 'name', type: 'text' },
+            { label: 'Address', name: 'address', type: 'text' },
+            { label: 'Date of Birth', name: 'dob', type: 'date' },
+            { label: 'Aadhaar Number', name: 'aadhaar', type: 'text' },
+            { label: 'PAN Number', name: 'pan', type: 'text' },
+            { label: 'Email', name: 'email', type: 'email' },
+            { label: 'Password', name: 'password', type: 'password' },
+            { label: 'Phone Number', name: 'phone', type: 'text', placeholder: 'Phone number registered with Aadhaar' },
+
+          
+          ].map(({ label, name, type, placeholder }) => (
+            <div key={name} className="col-md-6 mb-3">
+              <label htmlFor={name} className="form-label">{label}</label>
+              <input
+                id={name}
+                type={type}
+                name={name}
+                placeholder={placeholder || ''}
+                className={`form-control ${errors[name] ? 'is-invalid' : ''}`}
+                value={formData[name]}
+                onChange={handleChange}
+              />
+              {errors[name] && <div className="invalid-feedback">{errors[name]}</div>}
+            </div>
+          ))}
+           <div className="col-md-6 mb-3">
+      <label htmlFor="ifscCode" className="form-label">IFSC Code</label>
+      <input
+        id="ifscCode"
+        type="text"
+        name="ifscCode"
+        className={`form-control ${errors.ifscCode ? 'is-invalid' : ''}`}
+        value={formData.ifscCode}
+        onChange={handleChange}
+      />
+      {errors.ifscCode && <div className="invalid-feedback">{errors.ifscCode}</div>}
     </div>
 
-    {/* Branch Dropdown Full Width */}
-    <div className="col-12 mb-3">
-      <label className="form-label">Select Bank</label>
+    <div className="col-md-6 mb-3">
+      <label htmlFor="branch" className="form-label">Select Bank</label>
       <select
+        id="branch"
         name="branch"
         className={`form-select ${errors.branch ? 'is-invalid' : ''}`}
         value={formData.branch}
         onChange={handleChange}
       >
         <option value="">-- Select Branch --</option>
-        {bankBranches.slice(1).map((branch) => (
-          <option key={branch} value={branch}>
-            {branch}
-          </option>
+        {bankBranches.map(branch => (
+          <option key={branch} value={branch}>{branch}</option>
         ))}
       </select>
       {errors.branch && <div className="invalid-feedback">{errors.branch}</div>}
     </div>
+
+           {/* Gender below IFSC and Select Bank, taking full width */}
+    <div className="col-12 mb-3">
+      <label className="form-label d-block">Gender</label>
+      {['Male', 'Female', 'Other'].map(option => (
+        
+        <div 
+        key={option} 
+        className="form-check form-check-inline align-items-center"
+        style={{ marginRight: '1.5rem' }}
+      >
+          <input
+            className={`form-check-input ${errors.gender ? 'is-invalid' : ''}`}
+            type="radio"name="gender"
+            id={`gender-${option}`}
+            value={option}
+            checked={formData.gender === option}
+            onChange={handleChange}
+          />
+          <label className="form-check-label" htmlFor={`gender-${option}`}>{option}</label>
+        </div>
+      ))}
+      {errors.gender && <div className="invalid-feedback d-block">{errors.gender}</div>}
+    </div>
+
   </div>
 
-  <div className="text-center">
-    <button type="submit" className="btn btn-primary w-50">Create Account</button>
-  </div>
-</form>
-</div>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary px-5 py-2 fs-5">
+            Create Account
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

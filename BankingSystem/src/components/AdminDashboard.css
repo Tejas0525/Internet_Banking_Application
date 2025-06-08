@@ -13,6 +13,13 @@ body {
   position: sticky;
   top: 0;
 }
+.active-menu {
+  background-color: #007bff !important;
+  font-weight: bold;
+  color: #fff !important;
+  border-radius: 4px;
+}
+
 
 .sidebar h4 {
   font-weight: 600;

@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
-
+import { useNavigate } from 'react-router-dom';
 const AdminDashboard = () => {
   // Banks state
+   const navigate = useNavigate();
+    const handleLogout = () => {
+    // localStorage.clear(); // Uncomment if you're using tokens
+    navigate('/'); // Redirect to home page
+  };
+const [selectedMenu, setSelectedMenu] = useState('dashboard');
+const [transactions, setTransactions] = useState([
+  { id: 1, customerName: 'Ravi Kumar', amount: 5000, status: 'Success' },
+  { id: 2, customerName: 'Priya Sharma', amount: 12000, status: 'Success' },
+  { id: 3, customerName: 'Ravi Kumar', amount: 300, status: 'Failed' },
+]);
+
+const [searchName, setSearchName] = useState('');
+
+
+
   const [banks, setBanks] = useState([
     { id: 1, name: 'State Bank', branch: 'Mumbai', manager: 'Rahul', ifsc: 'SBIN0001', contact: '9876543210' },
   ]);
@@ -118,11 +134,26 @@ const AdminDashboard = () => {
         <Col md={2} className="bg-dark text-white p-3" style={{ minHeight: '100vh' }}>
           <h4 className="text-center mb-4">Admin Panel</h4>
           <ListGroup variant="flush">
-            
-            <ListGroup.Item className="bg-dark text-white border-0">Manage Banks</ListGroup.Item>
-            <ListGroup.Item className="bg-dark text-white border-0">Manage Manager</ListGroup.Item>
-            <ListGroup.Item className="bg-dark text-white border-0">Manage Customers</ListGroup.Item>
-            <ListGroup.Item className="bg-dark text-white border-0">Transactions</ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white border-0"
+            onClick={() => setSelectedMenu('manageBanks')}
+            style={{ cursor: 'pointer' }}
+            >Manage Banks</ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white border-0"
+            onClick={() => setSelectedMenu('manageManagers')}
+            style={{ cursor: 'pointer' }}
+            >Manage Manager</ListGroup.Item>
+            <ListGroup.Item className="bg-dark text-white border-0"
+            onClick={() => setSelectedMenu('manageCustomers')}
+            style={{ cursor: 'pointer' }}
+            >Manage Customers</ListGroup.Item>
+           <ListGroup.Item className="bg-dark text-white border-0"
+            onClick={() => setSelectedMenu('transactions')}
+  style={{ cursor: 'pointer' }}
+           >Transactions</ListGroup.Item>
+           <ListGroup.Item className="bg-dark text-white border-0" 
+           onClick={handleLogout} 
+              style={{ cursor: 'pointer' }}
+              >Logout</ListGroup.Item>
           </ListGroup>
         </Col>
 
@@ -374,16 +405,45 @@ const AdminDashboard = () => {
           </Card>
 
           {/* Transactions Section */}
-          <Card>
-            <Card.Header>Recent Transactions</Card.Header>
-            <Card.Body>
-              <ul>
-                <li>Transaction #001 - ₹5000 - Success</li>
-                <li>Transaction #002 - ₹12000 - Success</li>
-                <li>Transaction #003 - ₹300 - Failed</li>
-              </ul>
-            </Card.Body>
-          </Card>
+          {selectedMenu === 'transactions' && (
+  <Card>
+    <Card.Header>Customer Transactions</Card.Header>
+    <Card.Body>
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by Customer Name"
+        value={searchName}
+        onChange={(e) => setSearchName(e.target.value)}
+      />
+      <table className="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Amount</th>
+            <th>Receiver Account</th>
+            <th>Time & Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions
+            .filter((txn) =>
+              txn.customerName.toLowerCase().includes(searchName.toLowerCase())
+            )
+            .map((txn) => (
+              <tr key={txn.id}>
+                <td>{txn.customerName}</td>
+                <td>₹{txn.amount}</td>
+                <td>{txn.receiverAccount}</td>
+                <td>{txn.dateTime}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </Card.Body>
+  </Card>
+)}
+
         </Col>
       </Row>
     </Container>
