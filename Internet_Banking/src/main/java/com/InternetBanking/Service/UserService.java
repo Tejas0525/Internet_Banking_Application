@@ -17,6 +17,15 @@ public class UserService {
 		return userRepository.getReferenceById(id);
 	}
 	
+	
+	public User getUserByUserName(String username) {
+		return userRepository.findByUserName(username).orElse(null);
+	}
+	
+	public User getUserByEmail(String email) {
+		return userRepository.findByEmail(email).orElse(null);
+	}
+	
 	public User saveUser (User user) {
 		return userRepository.save(user);
 	}

@@ -1,5 +1,9 @@
 package com.InternetBanking.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,11 +25,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Branch")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer branchId;
+    
+    @Column(unique = true)
+    private String branchName;
 
     private String ifscCode;
 
@@ -34,6 +42,7 @@ public class Branch {
     private String branchManager;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id", nullable = false) // Foreign key in Branch table
+    @JoinColumn(name = "bank_id", nullable = false)
+    @JsonIgnore
     private Bank bank;
 }

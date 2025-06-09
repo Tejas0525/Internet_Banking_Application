@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.InternetBanking.Entity.User;
+import com.InternetBanking.Security.AuthenticationService;
 import com.InternetBanking.Service.UserService;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable Integer id) {
@@ -34,11 +39,16 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
-	@PostMapping("/save")
-	public ResponseEntity<User> saveUser(@RequestBody User user ) {
+	@GetMapping("/getByUserName")
+	public ResponseEntity<User> getUserByUserName(@RequestParam String userName) {
+		User user = userService.getUserByUserName(userName);
+		if (user == null) {
+	        return ResponseEntity.notFound().build(); // 404 Not Found
+	    }
 
-		return ResponseEntity.ok(userService.saveUser(user));
+		return ResponseEntity.ok(user);
 	}
+	
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<User>> getAllUser() {
