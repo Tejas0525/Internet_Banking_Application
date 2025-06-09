@@ -1,0 +1,62 @@
+.customer-dashboard-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #34495e;
+}
+
+.customer-dashboard-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.customer-dashboard-container h4 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #2980b9;
+  padding-bottom: 6px;
+  color: #2980b9;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.transaction-table th,
+.transaction-table td {
+  border: 1px solid #ddd;
+  padding: 12px 18px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.transaction-table thead {
+  background-color: #2980b9;
+  color: white;
+}
+
+.transaction-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: #d6eaff;
+}
+
+.no-transactions-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-top: 20px;
+  font-style: italic;
+}

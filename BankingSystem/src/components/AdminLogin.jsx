@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const schema = yup.object().shape({
   role: yup.string().required('Role is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -20,7 +19,7 @@ function AdminLogin() {
   const selectedRole = watch('role');
   const navigate = useNavigate();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const { role, email, password } = data;
 
     if (role === 'admin' && email === 'admin@bank.com' && password === 'password123') {
@@ -30,24 +29,12 @@ function AdminLogin() {
       alert('Manager Login successful!');
       navigate('/manager-dashboard');
     } else if (role === 'user') {
-      try {
-        const res = await fetch(`/api/users/exists?email=${encodeURIComponent(email)}`);
-        const result = await res.json();
-
-        if (result.exists && password === 'password123') {
-          
-          alert('User Login successful!');
-          navigate('/transaction');
-        } else {
-          alert('Invalid user credentials or account does not exist.');
-        }
-      } catch (err) {
-        alert('Error checking user account.');
-        console.error(err);
-      }
-    } else {
-      alert('Invalid credentials or role');
-    }
+    // Kisi bhi user email/password ko accept karo bina backend check ke
+    alert('User Login successful!');
+    navigate('/CreateTransaction');
+  } else {
+    alert('Invalid credentials or role.');
+  }
   };
 
   return (

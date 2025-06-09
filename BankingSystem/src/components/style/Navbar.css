@@ -1,12 +1,13 @@
 .navbar-custom {
-  background-color: #4283c5;
+  background-color: #1e40af; /* Blue shade */
   padding: 1rem;
 }
 
 .navbar-custom .nav-link {
-  color: rgb(77, 68, 201);
+  color: #ffffff; /* White text for contrast */
   font-weight: bold;
 }
+
 .custom-navbar {
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;

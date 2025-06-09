@@ -13,7 +13,7 @@ function Home() {
 
       {/* Hero Section with Carousel and Overlay */}
       <div className="position-relative">
-        <div id="carouselExample" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="500">
+        <div id="carouselExample" className="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="1000">
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img
@@ -40,11 +40,11 @@ function Home() {
               />
             </div>
           </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style={{backgroundColor:'transparent',borderColor:'white'}}>
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Previous</span>
           </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" style={{backgroundColor:'transparent',borderColor:'white'}}>
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
           </button>

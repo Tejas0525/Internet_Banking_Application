@@ -3,7 +3,7 @@ import React from 'react';
 function ContactUs() {
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '90vh', background: '#e3f2fd' }}>
-      <div className="card shadow p-4" style={{ width: '100%', maxWidth: '500px' }}>
+      <div className="card shadow p-4" style={{ maxWidth: '600px'}}>
         <h3 className="text-center mb-4">Contact Us</h3>
         <form>
           <div className="mb-3">

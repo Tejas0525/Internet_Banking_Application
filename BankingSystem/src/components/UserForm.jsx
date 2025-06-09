@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './UserForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const UserForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -50,20 +51,35 @@ const UserForm = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'radio' ? value : value,
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      alert('User account created successfully!');
-      console.log('Form Data:', formData);
+      alert('Account created successfully!');
+      // Reset form
+      setFormData({
+        name: '',
+        address: '',
+        dob: '',
+        aadhaar: '',
+        pan: '',
+        email: '',
+        password: '',
+        ifscCode: '',
+        phone: '',
+        gender: '',
+        branch: '',
+      });
+      // Redirect here
+      
     }
-  };
+   };
 
   const bankBranches = ['SBI', 'ICICI', 'HDFC', 'Axis Bank', 'PNB'];
 
@@ -85,8 +101,6 @@ const UserForm = () => {
             { label: 'Email', name: 'email', type: 'email' },
             { label: 'Password', name: 'password', type: 'password' },
             { label: 'Phone Number', name: 'phone', type: 'text', placeholder: 'Phone number registered with Aadhaar' },
-
-          
           ].map(({ label, name, type, placeholder }) => (
             <div key={name} className="col-md-6 mb-3">
               <label htmlFor={name} className="form-label">{label}</label>
@@ -102,61 +116,61 @@ const UserForm = () => {
               {errors[name] && <div className="invalid-feedback">{errors[name]}</div>}
             </div>
           ))}
-           <div className="col-md-6 mb-3">
-      <label htmlFor="ifscCode" className="form-label">IFSC Code</label>
-      <input
-        id="ifscCode"
-        type="text"
-        name="ifscCode"
-        className={`form-control ${errors.ifscCode ? 'is-invalid' : ''}`}
-        value={formData.ifscCode}
-        onChange={handleChange}
-      />
-      {errors.ifscCode && <div className="invalid-feedback">{errors.ifscCode}</div>}
-    </div>
 
-    <div className="col-md-6 mb-3">
-      <label htmlFor="branch" className="form-label">Select Bank</label>
-      <select
-        id="branch"
-        name="branch"
-        className={`form-select ${errors.branch ? 'is-invalid' : ''}`}
-        value={formData.branch}
-        onChange={handleChange}
-      >
-        <option value="">-- Select Branch --</option>
-        {bankBranches.map(branch => (
-          <option key={branch} value={branch}>{branch}</option>
-        ))}
-      </select>
-      {errors.branch && <div className="invalid-feedback">{errors.branch}</div>}
-    </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="ifscCode" className="form-label">IFSC Code</label>
+            <input
+              id="ifscCode"
+              type="text"
+              name="ifscCode"
+              className={`form-control ${errors.ifscCode ? 'is-invalid' : ''}`}
+              value={formData.ifscCode}
+              onChange={handleChange}
+            />
+            {errors.ifscCode && <div className="invalid-feedback">{errors.ifscCode}</div>}
+          </div>
 
-           {/* Gender below IFSC and Select Bank, taking full width */}
-    <div className="col-12 mb-3">
-      <label className="form-label d-block">Gender</label>
-      {['Male', 'Female', 'Other'].map(option => (
-        
-        <div 
-        key={option} 
-        className="form-check form-check-inline align-items-center"
-        style={{ marginRight: '1.5rem' }}
-      >
-          <input
-            className={`form-check-input ${errors.gender ? 'is-invalid' : ''}`}
-            type="radio"name="gender"
-            id={`gender-${option}`}
-            value={option}
-            checked={formData.gender === option}
-            onChange={handleChange}
-          />
-          <label className="form-check-label" htmlFor={`gender-${option}`}>{option}</label>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="branch" className="form-label">Select Bank</label>
+            <select
+              id="branch"
+              name="branch"
+              className={`form-select ${errors.branch ? 'is-invalid' : ''}`}
+              value={formData.branch}
+              onChange={handleChange}
+            >
+              <option value="">-- Select Branch --</option>
+              {bankBranches.map(branch => (
+                <option key={branch} value={branch}>{branch}</option>
+              ))}
+            </select>
+            {errors.branch && <div className="invalid-feedback">{errors.branch}</div>}
+          </div>
+
+          {/* Gender below IFSC and Select Bank */}
+          <div className="col-12 mb-3">
+            <label className="form-label d-block">Gender</label>
+            {['Male', 'Female', 'Other'].map(option => (
+              <div
+                key={option}
+                className="form-check form-check-inline align-items-center"
+                style={{ marginRight: '1.5rem' }}
+              >
+                <input
+                  className={`form-check-input ${errors.gender ? 'is-invalid' : ''}`}
+                  type="radio"
+                  name="gender"
+                  id={`gender-${option}`}
+                  value={option}
+                  checked={formData.gender === option}
+                  onChange={handleChange}
+                />
+                <label className="form-check-label" htmlFor={`gender-${option}`}>{option}</label>
+              </div>
+            ))}
+            {errors.gender && <div className="invalid-feedback d-block">{errors.gender}</div>}
+          </div>
         </div>
-      ))}
-      {errors.gender && <div className="invalid-feedback d-block">{errors.gender}</div>}
-    </div>
-
-  </div>
 
         <div className="text-center">
           <button type="submit" className="btn btn-primary px-5 py-2 fs-5">

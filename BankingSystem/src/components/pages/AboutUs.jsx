@@ -28,7 +28,7 @@ function AboutUs() {
               src="/assets/jayashri.jpg"
               className="card-img-top"
               alt="Jayashri"
-              style={{ height: '350px', objectFit: 'cover' }}
+              style={{ height: '300px', width :'300px'}}
             />
             <div className="card-body">
               <h5 className="card-title">Jayashri Dadmal</h5>
@@ -48,7 +48,7 @@ function AboutUs() {
               src="/assets/shwetaSherkar.jpg"
               className="card-img-top"
               alt="Shweta"
-              style={{ height: '350px', objectFit: 'cover' }}
+              style={{ height: '300px', width :'300px' }}
             />
             <div className="card-body">
               <h5 className="card-title">Shweta Sherkar</h5>
@@ -68,7 +68,7 @@ function AboutUs() {
               src="/assets/TejasPatil.jpg"
               className="card-img-top"
               alt="Tejas"
-              style={{ height: '350px', objectFit: 'cover' }}
+              style={{ height: '300px', width :'300px' }}
             />
             <div className="card-body">
               <h5 className="card-title">Tejas Patil</h5>

@@ -20,7 +20,7 @@ const initialCustomers = [
   {
     id: 1,
     name: 'Ravi Kumar',
-    email: 'ravi@example.com',
+    email: 'ravi@gmail.com',
     accountNumber: '123456',
     branch: 'Mumbai',
     status: 'Active',
@@ -29,9 +29,9 @@ const initialCustomers = [
   {
     id: 2,
     name: 'Priya Sharma',
-    email: 'priya@example.com',
+    email: 'priya@gmail.com',
     accountNumber: '789012',
-    branch: 'Delhi',
+    branch: 'Dhule',
     status: 'Inactive',
     dob: '1992-05-15',
   },
@@ -40,9 +40,27 @@ const initialCustomers = [
     name: 'Anil Singh',
     email: 'anil@example.com',
     accountNumber: '456789',
-    branch: 'Bangalore',
+    branch: 'Sangali',
     status: 'Active',
     dob: '1988-11-20',
+  },
+  {
+  id: 4,
+    name: 'Shahi Kumar',
+    email: 'shahi@gmail.com',
+    accountNumber: '1330456',
+    branch: 'Mumbai',
+    status: 'Active',
+    dob: '2021-01-01',
+  },
+  {
+    id: 5,
+    name: 'Priya Patil',
+    email: 'priya@gmail.com',
+    accountNumber: '6129012',
+    branch: 'Pune',
+    status: 'Inactive',
+    dob: '2024-05-15',
   },
 ];
 
@@ -65,11 +83,27 @@ const initialTransactions = [
   },
   {
     id: 3,
-    accountNumber: '789012',
+    accountNumber: '1330456',
     date: '2025-06-02',
     type: 'Deposit',
     amount: 10000,
     status: 'Failed',
+  },
+   {
+    id: 3,
+    accountNumber: '123456',
+    date: '2025-06-01',
+    type: 'Deposit',
+    amount: 5000,
+    status: 'Success',
+  },
+  {
+    id: 4,
+    accountNumber: '6129012',
+    date: '2025-06-03',
+    type: 'Withdrawal',
+    amount: 2000,
+    status: 'Success',
   },
 ];
 

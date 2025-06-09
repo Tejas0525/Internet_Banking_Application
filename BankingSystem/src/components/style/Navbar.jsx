@@ -4,7 +4,7 @@ import './Navbar.css';
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem', height: '60px' }}>
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem', height: '60px',backgroundColor:'#ADD8E6' }}>
 
       <div className="container-fluid">
 
@@ -34,6 +34,7 @@ function Navbar() {
             <li className="nav-item"><Link className="nav-link custom-link" style={{ color: '#000', fontWeight: 'bold' }} to="/">Home</Link></li>
             <li className="nav-item"><Link className="nav-link custom-link" style={{ color: '#000', fontWeight: 'bold' }} to="/about">About Us</Link></li>
             <li className="nav-item"><Link className="nav-link custom-link" style={{ color: '#000', fontWeight: 'bold' }} to="/contact">Contact Us</Link></li>
+              <li className="nav-item"><Link className="nav-link custom-link" style={{ color: '#000', fontWeight: 'bold' }} to="/admin-login">Sign In</Link></li>
             <li className="nav-item"><Link className="nav-link custom-link" style={{ color: '#000', fontWeight: 'bold' }} to="/create-account">Sign Up</Link></li>
           </ul>
         </div>

@@ -3,16 +3,23 @@ import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 const AdminDashboard = () => {
   // Banks state
+   const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+
    const navigate = useNavigate();
     const handleLogout = () => {
     // localStorage.clear(); // Uncomment if you're using tokens
     navigate('/'); // Redirect to home page
   };
 const [selectedMenu, setSelectedMenu] = useState('dashboard');
+
 const [transactions, setTransactions] = useState([
-  { id: 1, customerName: 'Ravi Kumar', amount: 5000, status: 'Success' },
-  { id: 2, customerName: 'Priya Sharma', amount: 12000, status: 'Success' },
-  { id: 3, customerName: 'Ravi Kumar', amount: 300, status: 'Failed' },
+  { AccountNo: 1234567, customerName: 'Ravi Kumar', Bank: 'State Bank', amount: 5000, receiverAccount: 'Priya Sharma - HDFC Bank', dateTime: '2024-06-08 10:45 AM', status: 'Success' },
+  { AccountNo: 2345678, customerName: 'Priya Sharma', Bank: 'HDFC Bank', amount: 12000, receiverAccount: 'Ravi Kumar - State Bank', dateTime: '2022-06-07 02:30 PM', status: 'Success' },
+  { AccountNo: 3456789, customerName: 'Ravi Kumar', Bank: 'ICICI Bank', amount: 300, receiverAccount: 'Sonal Patil - Axis Bank', dateTime: '2025-06-06 11:15 AM', status: 'Failed' },
+  { AccountNo: 4567890, customerName: 'Priya Sharma', Bank: 'Union Bank', amount: 20000, receiverAccount: 'Ravi Mehata - State Bank', dateTime: '2025-02-07 02:30 PM', status: 'Success' },
+  { AccountNo: 3450789, customerName: 'Navin Kumar', Bank: 'RBI Bank', amount: 3000, receiverAccount: 'Sonal Kale - Axis Bank', dateTime: '20254-012-06 11:15 AM', status: 'Failed' },
+
 ]);
 
 const [searchName, setSearchName] = useState('');
@@ -49,10 +56,18 @@ const [searchName, setSearchName] = useState('');
 
   // Customers state
   const [customers, setCustomers] = useState([
-    { id: 1, name: 'Ravi Kumar', email: 'ravi@example.com', accountNumber: '1234567890', active: true },
-    { id: 2, name: 'Priya Sharma', email: 'priya@example.com', accountNumber: '9876543210', active: false },
+    { id:1, name: 'Ravi Kumar', email: 'ravi@gmail.com', accountNumber: '1234567890', bank:'State Bank', active: true },
+    { id:2, name: 'Priya Sharma', email: 'priya@email.com', accountNumber: '9876543210', bank:'HDFC Bank', active: false },
+    { id:3, name: 'Suraj Kumar', email: 'suraj@gmail.com', accountNumber: '1234087890', bank:'Union Bank', active: true },
+    { id:4, name: 'Priya Rane', email: 'priya@gmail.com', accountNumber: '3476543210', bank:'HDFC Bank', active: false },
   ]);
 
+  const scrollToTransactions = () => {
+  const element = document.getElementById('transactionsSection');
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
   // ----------- BANK FUNCTIONS ------------
 
   const handleBankChange = (e) => {
@@ -147,8 +162,8 @@ const [searchName, setSearchName] = useState('');
             style={{ cursor: 'pointer' }}
             >Manage Customers</ListGroup.Item>
            <ListGroup.Item className="bg-dark text-white border-0"
-            onClick={() => setSelectedMenu('transactions')}
-  style={{ cursor: 'pointer' }}
+            onClick={()=>setSelectedMenu('transactions')}
+            style={{ cursor: 'pointer' }}
            >Transactions</ListGroup.Item>
            <ListGroup.Item className="bg-dark text-white border-0" 
            onClick={handleLogout} 
@@ -191,7 +206,7 @@ const [searchName, setSearchName] = useState('');
               <Card bg="info" text="white">
                 <Card.Body>
                   <Card.Title>Total Transactions</Card.Title>
-                  <Card.Text>230</Card.Text> {/* Hardcoded */}
+                  <Card.Text>5</Card.Text> {/* Hardcoded */}
                 </Card.Body>
               </Card>
             </Col>
@@ -371,6 +386,7 @@ const [searchName, setSearchName] = useState('');
                     <th>Name</th>
                     <th>Email</th>
                     <th>Account Number</th>
+                    <th>Bank</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -381,6 +397,7 @@ const [searchName, setSearchName] = useState('');
                       <td>{customer.name}</td>
                       <td>{customer.email}</td>
                       <td>{customer.accountNumber}</td>
+                      <td>{customer.bank}</td>
                       <td>
                         {customer.active ? (
                           <span className="text-success">Active</span>
@@ -406,42 +423,50 @@ const [searchName, setSearchName] = useState('');
 
           {/* Transactions Section */}
           {selectedMenu === 'transactions' && (
-  <Card>
-    <Card.Header>Customer Transactions</Card.Header>
-    <Card.Body>
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Search by Customer Name"
-        value={searchName}
-        onChange={(e) => setSearchName(e.target.value)}
-      />
-      <table className="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Customer Name</th>
-            <th>Amount</th>
-            <th>Receiver Account</th>
-            <th>Time & Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions
-            .filter((txn) =>
-              txn.customerName.toLowerCase().includes(searchName.toLowerCase())
-            )
-            .map((txn) => (
-              <tr key={txn.id}>
-                <td>{txn.customerName}</td>
-                <td>₹{txn.amount}</td>
-                <td>{txn.receiverAccount}</td>
-                <td>{txn.dateTime}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </Card.Body>
-  </Card>
+  <div id="transactionsSection" className="p-3" style={{ width: '100%' }}>
+    <Card>
+      <Card.Header>Customer Transactions</Card.Header>
+      <Card.Body>
+        <input
+          type="text"
+          className="form-control mb-3"
+          placeholder="Search by Customer Name"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+        <table className="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Bank</th>
+              <th>Amount</th>
+              <th>Receiver</th>
+              <th>Date & Time</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions
+              .filter((txn) =>
+                txn.customerName
+                  .toLowerCase()
+                  .includes(searchName.toLowerCase())
+              )
+              .map((txn) => (
+                <tr key={txn.AccountNo}>
+                  <td>{txn.customerName}</td>
+                  <td>{txn.Bank}</td>
+                  <td>₹{txn.amount}</td>
+                  <td>{txn.receiverAccount}</td>
+                  <td>{txn.dateTime}</td>
+                  <td>{txn.status}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </Card.Body>
+    </Card>
+  </div>
 )}
 
         </Col>
